@@ -1,0 +1,5 @@
+llama-stack-client
+streamlit
+python-dotenv
+requests
+tavily-python
