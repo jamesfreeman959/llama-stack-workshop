@@ -1,12 +1,19 @@
 # Installation and Setup Guide for LLaMA Stack Projects
 
-This guide provides instructions to install Python 3.11, set up two Python projects (`llama-stack-server` and `llama-stack-workshop`) with virtual environments, install Ollama, pull specific LLaMA models, and configure the projects.
+This guide provides instructions to install Python 3.11, set up two Python projects (`llama-stack-server` and `llama-stack-workshop`) with virtual environments, install Ollama, pull specific LLaMA models, and configure the projects. You can run the installer script OR follow the step by step instructions.
 
 ## Prerequisites
 - A system with a terminal (Linux, macOS, or Windows with WSL).
 - Internet access to download packages and models.
 - Administrative privileges for installing software.
 - A Tavily API key (for the workshop project).
+
+## Setup using Installer script for Linux and Mac.
+   Download the installer.sh script from the repo
+```bash
+chmod +x installer.sh
+./installer.sh
+```
 
 ## Step 1: Install Python 3.11
 1. **Linux (Ubuntu/Debian-based)**
@@ -42,7 +49,7 @@ This guide provides instructions to install Python 3.11, set up two Python proje
 Run the following commands to pull the required models:
 ```bash
 ollama pull llama3.2:3b-instruct-fp16
-ollama pull meta-llama/Llama-Guard-3-8B
+#ollama pull meta-llama/Llama-Guard-3-8B
 ```
 
 ## Step 4: Start Ollama
@@ -63,13 +70,17 @@ Note: Run this in a separate terminal, as it needs to keep running.
    python3.11 -m venv .venv
    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
    ```
-3. Build the LLaMA stack with the Ollama template:
+3. Install llama-stack
+   ```bash
+   pip install llama-stack==0.2.8
+  ``` 
+4. Build the LLaMA stack with the Ollama template:
    ```bash
    INFERENCE_MODEL="llama3.2:3b-instruct-fp16" llama stack build --template ollama --image-type venv
    ```
 4. Run the LLaMA stack server:
    ```bash
-   llama stack run .venv/lib/python3.11/site-packages/llama_stack/templates/ollama/run-with-safety.yaml --image-type venv
+   llama stack run .venv/lib/python3.11/site-packages/llama_stack/templates/ollama/run.yaml --image-type venv
    ```
    Note: Keep this running in a terminal.
 
