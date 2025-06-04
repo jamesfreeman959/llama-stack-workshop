@@ -9,12 +9,19 @@ This guide provides instructions to install Python 3.11, set up two Python proje
 - A Tavily API key (for the workshop project).
 
 ## Setup using Installer script for Linux and Mac.
-   Download the installer.sh script from the repo
+1. **Step 1 - Clone the repo**
 ```bash
+git clone https://github.com/devninja-in/llama-stack-workshop.git
+```
+2. **Step 2 - Go to project directory and make the installer script executable and run it there.**
+
+```bash
+cd llama-stack-workshop
 chmod +x installer.sh
 ./installer.sh
 ```
-
+## OR ##
+                                 
 ## Step 1: Install Python 3.11
 1. **Linux (Ubuntu/Debian-based)**
    ```bash

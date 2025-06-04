@@ -177,15 +177,15 @@ setup_venv_and_run_llama_stack() {
 
 setup_env_and_clone_workshop_repo() {
     # Clone outside current directory
-    CLONE_DIR="../llama-stack-workshop"
-    if [ -d "$CLONE_DIR" ]; then
-        echo "Directory '$CLONE_DIR' already exists. Skipping clone."
-    else
-        echo "Cloning llama-stack-workshop repo into '$CLONE_DIR'..."
-        git clone https://github.com/devninja-in/llama-stack-workshop "$CLONE_DIR"
-    fi
-
-    cd "$CLONE_DIR" || { echo "Failed to cd into $CLONE_DIR"; exit 1; }
+#    CLONE_DIR="../llama-stack-workshop"
+#    if [ -d "$CLONE_DIR" ]; then
+#        echo "Directory '$CLONE_DIR' already exists. Skipping clone."
+#    else
+#        echo "Cloning llama-stack-workshop repo into '$CLONE_DIR'..."
+#        git clone https://github.com/devninja-in/llama-stack-workshop "$CLONE_DIR"
+#    fi
+#
+#    cd "$CLONE_DIR" || { echo "Failed to cd into $CLONE_DIR"; exit 1; }
 
     # Create venv
     python3.11 -m venv .venv
@@ -229,7 +229,9 @@ stop_ollama_server(){
     echo "Ollama server not running or PID missing"
   fi
 }
-
+go_one_dir_up(){
+  cd ..
+}
 # Execute all steps
 install_python
 ensure_python_venv_installed
@@ -238,8 +240,9 @@ check_ollama_version
 start_ollama
 pull_model "llama3.2:3b-instruct-fp16"
 #pull_model "llama-guard3:8b"
-setup_venv_and_run_llama_stack
 setup_env_and_clone_workshop_repo
+go_one_dir_up
+setup_venv_and_run_llama_stack
 stop_ollama_server
 
 
