@@ -8,10 +8,13 @@ load_dotenv()
 # create llama stack client
 
 
-def chat_completion_with_inference(content: str):
+def chat_completion_with_inference(user_message: str):
     #chat completion
     pass
 
 
 if __name__ == "__main__":
-    chat_completion_with_inference("tell me a story")
+    user_message = "What is the capital of India?"
+    response = chat_completion_with_inference(user_message)
+    print("\nUser Message:", user_message)
+    print("\nInference Response:", response)

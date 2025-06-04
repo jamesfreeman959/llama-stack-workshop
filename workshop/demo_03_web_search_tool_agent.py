@@ -14,6 +14,7 @@ load_dotenv()
 
 client = LlamaStackClient(base_url=os.getenv("LLAMA_STACK_SERVER"))
 
+
 def travily_web_search(query: str):
     """
     Tool to perform web search for latest information. This tool returns array of search results consist of title, url, content.
@@ -22,6 +23,9 @@ def travily_web_search(query: str):
     :return: array of search results, each result contains title, url, content, score.
     """
     pass
+
+
+# create agent
 
 def create_websearch_tool_agent_session(prefix: str):
     pass
@@ -32,5 +36,9 @@ def chat_with_websearch_tool_agent(session_id: str, user_message: str):
 
 
 if __name__ == "__main__":
-    chat_with_websearch_tool_agent(create_websearch_tool_agent_session("demo_web_search_tool"),
-                                     "is Virat Kohli retired from test cricket?")
+    user_message = "is Virat Kohli retired from test cricket?"
+    session_id = create_websearch_tool_agent_session("demo_web_search_tool")
+    response = chat_with_websearch_tool_agent(session_id,
+                                              user_message)
+    print(f"\nUser Message: {user_message}")
+    print(f"\nAgent Response: {response}")

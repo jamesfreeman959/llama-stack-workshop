@@ -2,23 +2,19 @@ import streamlit as st
 
 
 # --- Sample functions ---
-def chat_with_inference(query):
+def chat_with_inference(user_message):
     return "not implemented"
 
-
-def chat_with_rag_inference(query):
+def chat_with_agent(user_message):
     return "not implemented"
 
-
-def chat_with_agent(query):
+def chat_with_agent_with_web_search_tool(user_message):
     return "not implemented"
 
-
-def chat_with_agent_with_web_search_tool(query):
+def dev_conf_agent(user_message):
     return "not implemented"
 
-
-def dev_conf_agent(query):
+def chat_with_rag_inference(user_message):
     return "not implemented"
 
 
