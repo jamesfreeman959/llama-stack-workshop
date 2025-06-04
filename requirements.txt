@@ -1,4 +1,4 @@
-llama-stack-client
+llama-stack-client==0.2.8
 streamlit
 python-dotenv
 requests
