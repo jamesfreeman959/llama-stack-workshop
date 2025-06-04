@@ -80,6 +80,8 @@ Note: Run this in a separate terminal, as it needs to keep running.
    ```
 4. Run the LLaMA stack server:
    ```bash
+   export INFERENCE_MODEL="llama3.2:3b-instruct-fp16"
+   export SAFETY_MODEL="llama-guard3:8b"
    llama stack run .venv/lib/python3.11/site-packages/llama_stack/templates/ollama/run.yaml --image-type venv
    ```
    Note: Keep this running in a terminal.
