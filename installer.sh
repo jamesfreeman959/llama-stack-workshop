@@ -201,6 +201,7 @@ setup_env_and_clone_workshop_repo() {
     if [ -f requirements.txt ]; then
         echo "Installing dependencies from requirements.txt..."
         pip install -r requirements.txt
+        pip install -e .
         echo "✅ Installed requirements."
     else
         echo "⚠️ requirements.txt not found!"
