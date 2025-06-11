@@ -232,13 +232,31 @@ stop_ollama_server(){
 go_one_dir_up(){
   cd ..
 }
+prompt_to_skip_pull_model(){
+  while true; do
+    read -p "Would you like to skip pulling the models and later provide Ollama server url directly(y/n) :" skip_model_pull
+    if [[ "$skip_model_pull" == "n" ]]; then
+      echo "Proceeding to pulling the models"
+      start_ollama
+      pull_model "llama3.2:3b-instruct-fp16"
+      break
+    elif [[ "$skip_model_pull" == "y" ]]; then
+      echo "Please export the correct OLLAMA_URL before starting llama stack server"
+      break
+    else
+      echo "Invalid input. Please enter y/n only"
+    fi
+  done
+}
+
 # Execute all steps
 install_python
 ensure_python_venv_installed
 install_ollama
 check_ollama_version
-start_ollama
-pull_model "llama3.2:3b-instruct-fp16"
+prompt_to_skip_pull_model
+#start_ollama
+#pull_model "llama3.2:3b-instruct-fp16"
 #pull_model "llama-guard3:8b"
 setup_env_and_clone_workshop_repo
 go_one_dir_up
