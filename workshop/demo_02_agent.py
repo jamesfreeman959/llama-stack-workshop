@@ -10,17 +10,27 @@ load_dotenv()
 
 
 # create llama stack client
-
+client = LlamaStackClient(base_url=os.getenv("LLAMA_STACK_SERVER"))
 
 # create agent
-
+agent = Agent(client=client,
+              instructions="You are helpful assistant",
+              model=os.getenv("INFERENCE_MODEL_ID"),
+              )
 
 def create_simple_agent_session(prefix):
-    pass
+    return agent.create_session(f"{prefix}_{uuid.uuid4()}")
 
 
 def chat_with_simple_agent(session_id, query):
-    pass
+    response = agent.create_turn(
+        session_id=session_id,
+        messages=[
+            UserMessage(role="user", content=query),
+        ],
+        stream=False,
+    )
+    return response.output_message.content
 
 
 if __name__ == "__main__":

@@ -1,18 +1,31 @@
 import streamlit as st
+from workshop.demo_01_inference import chat_completion_with_inference
+from workshop.demo_02_agent import chat_with_simple_agent, create_simple_agent_session
+from workshop.demo_03_web_search_tool_agent import chat_with_websearch_tool_agent, create_websearch_tool_agent_session
+from workshop.demo_05_dev_conf_agent import chat_with_dev_conf_cz_agent, create_dev_conf_cz_agent_session
+
 
 
 # --- Sample functions ---
 def chat_with_inference(user_message):
-    return "not implemented"
+    return chat_completion_with_inference(user_message)
 
 def chat_with_agent(user_message):
-    return "not implemented"
+    if "chat_with_agent" not in st.session_state:
+        st.session_state["chat_with_agent"] = create_simple_agent_session("chat_with_agent")
+    return chat_with_simple_agent(st.session_state["chat_with_agent"], query)
+
 
 def chat_with_agent_with_web_search_tool(user_message):
-    return "not implemented"
+    if "chat_with_web_search_tool_agent" not in st.session_state:
+        st.session_state["chat_with_web_search_tool_agent"] = create_websearch_tool_agent_session(
+            "chat_with_web_search_tool_agent")
+    return chat_with_websearch_tool_agent(st.session_state["chat_with_web_search_tool_agent"], query)
 
 def dev_conf_agent(user_message):
-    return "not implemented"
+    if "dev_conf_agent_session_id" not in st.session_state:
+        st.session_state["dev_conf_agent_session_id"] = create_dev_conf_cz_agent_session("dev_conf_agent_chat_app")
+    return chat_with_dev_conf_cz_agent(st.session_state["dev_conf_agent_session_id"], query)
 
 def chat_with_rag_inference(user_message):
     return "not implemented"
