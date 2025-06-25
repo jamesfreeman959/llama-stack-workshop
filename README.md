@@ -7,22 +7,22 @@ This guide provides instructions to install Python 3.11, set up two Python proje
 - Internet access to download packages and models.
 - Administrative privileges for installing software.
 - A Tavily API key (for the workshop project).
-
-## Setup using Installer script for Linux and Mac.
-1. **Step 1 - Clone the repo**
+- Clone the repo:
 ```bash
-git clone https://github.com/devninja-in/llama-stack-workshop.git
+git clone https://github.com/jamesfreeman959/llama-stack-workshop.git
 ```
-2. **Step 2 - Go to project directory and make the installer script executable and run it there.**
+
+## Either: Setup using Installer script for Linux and Mac.
+1. Go to project directory and make the installer script executable and run it there.:
 
 ```bash
 cd llama-stack-workshop
 chmod +x installer.sh
 ./installer.sh
 ```
-## OR ##
+## OR: Run through Steps 1-4 below:
                                  
-## Step 1: Install Python 3.11
+### Step 1: Install Python 3.11
 1. **Linux (Ubuntu/Debian-based)**
    ```bash
    sudo apt update
@@ -42,7 +42,7 @@ chmod +x installer.sh
      python3.11 --version
      ```
 
-## Step 2: Install Ollama
+### Step 2: Install Ollama
 1. Download and install Ollama:
    ```bash
    curl -fsSL https://ollama.com/install.sh | sh
@@ -52,21 +52,25 @@ chmod +x installer.sh
    ollama --version
    ```
 
-## Step 3: Pull LLaMA Models
+### Step 3: Pull LLaMA Models
 Run the following commands to pull the required models:
 ```bash
 ollama pull llama3.2:3b-instruct-fp16
 #ollama pull meta-llama/Llama-Guard-3-8B
 ```
 
-## Step 4: Start Ollama
+### Step 4: Start Ollama
 Start the Ollama service:
 ```bash
 ollama serve
 ```
 Note: Run this in a separate terminal, as it needs to keep running.
 
-## Step 5: Set Up `llama-stack-server` Project
+## Proceed with the workshop
+Once you have successfully installed all pre-requisites, and Ollama is running with your model, you can now proceed with the workshop as below:
+
+
+### Workshop Step 1: Set Up `llama-stack-server` Project
 1. Create and navigate to the project directory:
    ```bash
    mkdir llama-stack-server
@@ -93,9 +97,10 @@ Note: Run this in a separate terminal, as it needs to keep running.
    ```
    Note: Keep this running in a terminal.
 
-## Step 6: Set Up `llama-stack-workshop` Project
+## Workshop Step 2: Set Up `llama-stack-workshop` Project
 1. Create and navigate to the project directory:
    ```bash
+   cd ..
    mkdir llama-stack-workshop
    cd llama-stack-workshop
    ```
@@ -106,7 +111,7 @@ Note: Run this in a separate terminal, as it needs to keep running.
    ```
 3. Create a `requirements.txt` file:
    ```bash
-   echo -e "llama-stack-client\nstreamlit\ndotenv\nrequests\ntavily" > requirements.txt
+   echo -e "llama-stack-client\nstreamlit\ndotenv\nrequests\ntavily-python" > requirements.txt
    ```
 4. Install the dependencies:
    ```bash
@@ -118,10 +123,12 @@ Note: Run this in a separate terminal, as it needs to keep running.
    ```
 6. Replace `<Add Key>` in the `.env` file with your Tavily API key.
 
-## Step 7: Verify Setup
+## Workshop Step 3: Verify Setup
 - Ensure the Ollama service is running (`ollama serve`).
 - Ensure the `llama-stack-server` is running (from Step 5.4).
 - The `llama-stack-workshop` project is now ready for development with the specified dependencies and configuration.
+
+
 
 ## Notes
 - Keep the Ollama service and `llama-stack-server` running in separate terminals.
