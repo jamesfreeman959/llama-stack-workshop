@@ -5,22 +5,20 @@ from llama_stack_client.types.shared_params import UserMessage, SystemMessage
 
 load_dotenv()
 
-# create llama stack client
+
 client = LlamaStackClient(base_url=os.getenv("LLAMA_STACK_SERVER"))
 
-def chat_completion_with_inference(user_message: str):
+def chat_completion_with_inference(content: str):
     response = client.inference.chat_completion(
         model_id=os.getenv("INFERENCE_MODEL_ID"),
         messages=[
-            UserMessage(role="user", content=user_message),
-            SystemMessage(role="system", content="You are helpful assistant!"),
-        ], stream=False
+            SystemMessage(role="system", content="You're a helpful assistant."),
+            UserMessage(role="user", content=content),
+        ],
+        stream=False,
     )
+    print(f"Content={content}, response={response}")
     return response.completion_message.content
 
-
 if __name__ == "__main__":
-    user_message = "What is the capital of India?"
-    response = chat_completion_with_inference(user_message)
-    print("\nUser Message:", user_message)
-    print("\nInference Response:", response)
+    print(chat_completion_with_inference("Tell me a short story about you."))
